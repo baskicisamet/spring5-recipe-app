@@ -10,7 +10,10 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    private BigDecimal amonut;
+    private BigDecimal amount;
+
+    @OneToOne(fetch = FetchType.EAGER) //its already eager as default value in this case but sometimes u want to show the  intent obviously
+    private UnitOfMeasure uom;
 
     @ManyToOne
     private Recipe recipe;
@@ -31,12 +34,12 @@ public class Ingredient {
         this.description = description;
     }
 
-    public BigDecimal getAmonut() {
-        return amonut;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setAmonut(BigDecimal amonut) {
-        this.amonut = amonut;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public Recipe getRecipe() {
@@ -45,5 +48,13 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public UnitOfMeasure getUom() {
+        return uom;
+    }
+
+    public void setUom(UnitOfMeasure uom) {
+        this.uom = uom;
     }
 }
