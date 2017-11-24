@@ -2,7 +2,6 @@ package com.sam.spring5recipeapp.controller;
 
 import com.sam.spring5recipeapp.domain.Recipe;
 import com.sam.spring5recipeapp.service.RecipeService;
-import com.sun.org.apache.regexp.internal.RE;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
