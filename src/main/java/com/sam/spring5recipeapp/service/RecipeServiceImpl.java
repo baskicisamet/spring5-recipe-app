@@ -1,5 +1,8 @@
 package com.sam.spring5recipeapp.service;
 
+import com.sam.spring5recipeapp.commands.RecipeCommand;
+import com.sam.spring5recipeapp.converters.RecipeCommandToRecipe;
+import com.sam.spring5recipeapp.converters.RecipeToRecipeCommand;
 import com.sam.spring5recipeapp.domain.Recipe;
 import com.sam.spring5recipeapp.repository.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -14,9 +17,13 @@ import java.util.Set;
 public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeRepository recipeRepository;
+    private RecipeCommandToRecipe recipeCommandToRecipe;
+    private RecipeToRecipeCommand recipeToRecipeCommand;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, RecipeCommandToRecipe recipeCommandToRecipe, RecipeToRecipeCommand recipeToRecipeCommand) {
         this.recipeRepository = recipeRepository;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
     }
 
     @Override
@@ -38,6 +45,15 @@ public class RecipeServiceImpl implements RecipeService {
             throw  new RuntimeException("Recipe Not Found");
         }
         return recipeOptional.get();
+    }
+
+    @Override
+    public RecipeCommand saveRecipeCommand(RecipeCommand command) {
+        Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
+
+        Recipe savedRecipe = recipeRepository.save(detachedRecipe);
+        log.debug("Saved RecipeId : " + savedRecipe.getId());
+        return recipeToRecipeCommand.convert(savedRecipe);
     }
 
 
