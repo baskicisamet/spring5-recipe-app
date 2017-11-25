@@ -23,13 +23,13 @@
     </style>
 </head>
 <body>
+<!--/*@thymesVar id="recipe" type="com.sam.spring5recipeapp.domain.Recipe"*/-->
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            
+
                 <div class="card card-primary">
                     <div class="card-header">
-                        <!--/*@thymesVar id="recipe" type="com.sam.spring5recipeapp.domain.Recipe"*/-->
                         <h6 class="card-title" th:text="${recipe.description}">Recipe Description Here!</h6>
                     </div>
                     <div class="card-body">
@@ -41,7 +41,7 @@
                                 <ul>
                                     <li th:remove="all">cat one</li>
                                     <li th:remove="all">cat two</li>
-                                    <!--/*@thymesVar id="recipe" type="com.sam.spring5recipeapp.domain.Recipe"*/-->
+
                                     <li th:each="category : ${recipe.categories}" th:text="${category.getDescription()}">cat three</li>
                                 </ul>
                             </div>
@@ -51,7 +51,6 @@
                                 <h6>Prep Time:</h6>
                             </div>
                             <div class="col-md-3">
-                                <!--/*@thymesVar id="recipe" type="com.sam.spring5recipeapp.domain.Recipe"*/-->
                                 <p th:text="${recipe.getPrepTime()} + ' min'">30 min</p>
                             </div>
                             <div class="col-md-3">
@@ -101,7 +100,6 @@
                                 <ul>
                                     <li th:remove="all">1 Cup of milk</li>
                                     <li th:remove="all">1 Teaspoon of chocolate</li>
-                                    <!--/*@thymesVar id="recipe" type="com.sam.spring5recipeapp.domain.Recipe"*/-->
                                     <li  th:each="ingredient : ${recipe.ingredients}"
                                          th:text="${ingredient.getAmount() +
                                           ' ' + ingredient.uom.getDescription() +
