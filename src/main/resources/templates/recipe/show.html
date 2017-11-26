@@ -19,6 +19,7 @@
     <style>
         .card{margin-bottom: 30px}
         .card-header{background-color: #51889b; color:white}
+        .btn{color:white}
 
     </style>
 </head>
@@ -92,7 +93,15 @@
                 </div>
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h6 class="card-title" >Ingredients</h6>
+
+                        <div class="row">
+                            <div class="col-md-11 ">
+                                <h6 class="panel-title">Ingredients</h6>
+                            </div>
+                            <div class="col-md-1">
+                                <a class="btn btn-default" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
