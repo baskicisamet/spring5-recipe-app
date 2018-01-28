@@ -4,6 +4,7 @@ spring:
     url: jdbc:mysql://localhost:3306/sfg_dev
     username: sfg_dev_user
     password: sam
+    platform: mysql #bunu belirtmemiz initialize sql'ini bu platform ismine gore almsasini sagliyacak(data-mysql.sql gibi)
   jpa:
     hibernate:
       ddl-auto: validate
